@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+import os
+import sys
+from datetime import datetime
+
+TMP_MSG_FILE = sys.argv[1]
+
+PROJECT_DIR = os.path.abspath(os.curdir)
+LATEST_MSG_FILE = os.path.join(PROJECT_DIR, ".latest_commit_msg")
+
+with open(TMP_MSG_FILE, "rb") as target:
+    msg = target.readline()
+
+now = datetime.now().isoformat()
+with open(LATEST_MSG_FILE, "wb") as target:
+    target.write(now.encode() + b":" + msg)

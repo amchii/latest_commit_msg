@@ -1,0 +1,14 @@
+#!/usr/bin/env python
+import os
+import time
+from subprocess import check_call
+
+PROJECT_DIR = os.path.abspath(os.curdir)
+LATEST_MSG_FILE = os.path.join(PROJECT_DIR, ".latest_commit_msg")
+INTERVAL=0.4
+
+if os.path.getmtime(LATEST_MSG_FILE) > time.time() - INTERVAL:
+    time.sleep(INTERVAL)  # avoid circular calls
+    check_call(["git", "add", "."])
+    check_call(["git", "commit", "--amend", "--no-edit", "--no-verify"])
+ 
