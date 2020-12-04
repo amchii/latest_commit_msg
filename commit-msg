@@ -13,4 +13,4 @@ with open(TMP_MSG_FILE, "rb") as target:
 
 now = datetime.now().isoformat()
 with open(LATEST_MSG_FILE, "wb") as target:
-    target.write(now.encode() + b":" + msg)
+    target.write(now.encode() + b": " + msg)
