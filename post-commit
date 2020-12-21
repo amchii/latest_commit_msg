@@ -12,6 +12,6 @@ if not os.path.exists(LATEST_MSG_FILE):
 
 if os.path.getmtime(LATEST_MSG_FILE) > time.time() - INTERVAL:
     time.sleep(INTERVAL)  # avoid circular calls
-    check_call(["git", "add", "."])
+    check_call(["git", "add", LATEST_MSG_FILE])
     check_call(["git", "commit", "--amend", "--no-edit", "--no-verify"])
  
